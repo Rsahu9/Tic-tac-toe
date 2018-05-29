@@ -13,10 +13,9 @@ class Tictac extends React.Component {
 			winner: '',
 			user1: '',
 			user2: '',
-			count: 0,
-			symbol_1 : '',
-			symbol_2 : '',
-			field : [[0,1,2],[3,4,5],[6,7,8]],
+			symbol_1: '',
+			symbol_2: '',
+			field: [[0,1,2],[3,4,5],[6,7,8]],
 		}
 	}
 
@@ -52,16 +51,14 @@ class Tictac extends React.Component {
 			this.state.field[x][y] = this.state.symbol_1;
 			this.setState({
 				field: this.state.field,
-				turn: !turn,
-				count: this.state.count+1,
+				turn: !turn
 			});
 		}
 		else{
 			this.state.field[x][y] = this.state.symbol_2;
 			this.setState({
 				field: this.state.field,
-				turn: !turn,
-				count: this.state.count+1,
+				turn: !turn
 			});
 		}
 
@@ -103,7 +100,6 @@ class Tictac extends React.Component {
 				<br />
 				<h3 className="play">{this.state.turn ? this.state.user2 : this.state.user1}{this.state.winner}</h3>
 				<h3>Turn : {this.state.turn ? this.state.user1+" ("+this.state.symbol_1+" )" : this.state.user2+" ("+this.state.symbol_2+" )"}</h3>
-				<h2 className="play">{this.state.count === 9 ? "Game Draw" : ""}</h2>
 			  <table id="board" border='5px'>
 			    <tbody>
           	<tr>
@@ -127,8 +123,8 @@ class Tictac extends React.Component {
 					<button onClick={() => this.handlePlay()}>Play again</button>
 				</div>
 				<div>
-					<h3>User 1 : {this.state.user1}</h3>
-					<h3>User 2 : {this.state.user2}</h3>
+					<h3>User 1 : { this.state.user1 }</h3>
+					<h3>User 2 : { this.state.user2 }</h3>
 				</div>
 			</div>
 		);
@@ -136,7 +132,8 @@ class Tictac extends React.Component {
 }
 
 export default withTracker(() => {
+	Meteor.subscribe('tasks');
   return {
-    tasks: Tasks.find({}, { sort: { createdAt: -1 } }).fetch(),
+    tasks: Tasks.find({}, { sort: { createdAt: -1 },limit: 2 }).fetch(),
   };
 })(Tictac)

@@ -9,6 +9,7 @@
     "meteor-node-stubs": "^0.3.2",
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
-    "react-meteor-data": "^0.2.11"
+    "react-meteor-data": "^0.2.11",
+    "simpl-schema": "^1.5.0"
   }
 }
